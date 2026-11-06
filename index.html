@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Imperial Select · Site, AIOS e WhatsApp</title>
+<style>
+  :root{
+    --black:#0a0a09; --panel:#121211; --panel2:#171714;
+    --gold:#c9a86a; --gold-light:#e6cd8f; --gold-line:#8a744a;
+    --white:#f4f0e4; --ink:#d9d3c1; --gray:#a79e8b; --border:#292920;
+    --serif:Georgia,"Hiragino Mincho ProN","Yu Mincho","Times New Roman",serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    font-family:-apple-system,"Hiragino Kaku Gothic ProN","Yu Gothic",Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    background:var(--black); color:var(--white); line-height:1.7;
+    display:flex; flex-direction:column; height:100vh; height:100dvh;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* ---------- topo ---------- */
+  .topo{background:#060605;border-bottom:2px solid var(--gold-line);flex:0 0 auto}
+  .marca{display:flex;align-items:center;gap:12px;padding:10px 16px 4px;max-width:1060px;margin:0 auto;width:100%}
+  .marca img{width:44px;height:auto;display:block}
+  .marca .nome{font-family:var(--serif);font-weight:700;font-size:17px;letter-spacing:.14em;color:var(--white);line-height:1.25}
+  .marca .sub{font-size:11px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;line-height:1.3}
+  .abas{display:flex;gap:6px;padding:8px 12px 10px;max-width:1060px;margin:0 auto;width:100%}
+  .abas button{
+    flex:1 1 0;background:transparent;border:1px solid var(--border);color:var(--ink);
+    font:inherit;font-weight:700;font-size:14px;letter-spacing:.03em;
+    padding:10px 4px;cursor:pointer;border-radius:2px;line-height:1.25;position:relative;
+  }
+  .abas button.ativa{background:var(--gold);border-color:var(--gold);color:#141310}
+  .abas .contador{
+    display:inline-block;min-width:20px;padding:0 5px;margin-left:5px;border-radius:10px;
+    background:#141310;color:var(--gold-light);font-size:11.5px;line-height:1.6;vertical-align:2px;
+  }
+  .abas button.ativa .contador{background:#141310;color:var(--gold-light)}
+  .abas .contador[hidden]{display:none}
+  .abas .contador.novo{animation:pulsa 1s ease-in-out 4}
+  @keyframes pulsa{0%,100%{transform:scale(1)}50%{transform:scale(1.35)}}
+  /* ---------- paineis ---------- */
+  main{flex:1 1 auto;display:flex;min-height:0}
+  .painel{display:none;flex:1 1 auto;min-height:0;flex-direction:column}
+  .painel.ativa{display:flex}
+  .dica{
+    flex:0 0 auto;background:var(--panel);border-bottom:1px solid var(--border);
+    color:var(--ink);font-size:12.5px;padding:7px 16px;text-align:center;line-height:1.5;
+  }
+  .dica strong{color:var(--gold-light);font-weight:700}
+  #quadro-site{flex:1 1 auto;width:100%;border:0;display:block;background:var(--black)}
+  .rolavel{overflow-y:auto;-webkit-overflow-scrolling:touch}
+  .miolo{max-width:1060px;margin:0 auto;width:100%;padding:26px 18px 44px}
+  /* ---------- AIOS ---------- */
+  .aios-topo{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+  .aios-topo img{width:40px;height:auto}
+  .aios-topo h1{font-family:var(--serif);font-size:23px;line-height:1.3}
+  .nota{font-size:12.5px;color:var(--gray);margin-bottom:24px;line-height:1.6}
+  h2.secao{
+    font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);
+    border-bottom:1px solid var(--border);padding-bottom:8px;margin:30px 0 14px;font-weight:700;
+  }
+  h2.secao:first-of-type{margin-top:6px}
+  .alerta{
+    background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--gold);
+    padding:14px 16px;margin-bottom:12px;border-radius:2px;
+  }
+  .alerta .linha1{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .selo{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-light)}
+  .alerta time{font-size:12px;color:var(--gray)}
+  .alerta h3{font-size:17px;margin-top:4px;line-height:1.4;overflow-wrap:anywhere}
+  .alerta p{font-size:14px;color:var(--ink);line-height:1.55;overflow-wrap:anywhere}
+  .alerta p strong{color:var(--white);font-weight:700}
+  .alerta .msg{color:var(--gray);font-style:italic}
+  .vazio{
+    background:var(--panel);border:1px dashed var(--gold-line);padding:18px 16px;border-radius:2px;
+    font-size:14px;color:var(--ink);line-height:1.65;
+  }
+  .areas{display:grid;grid-template-columns:1fr;gap:14px}
+  @media (min-width:760px){.areas{grid-template-columns:repeat(3,1fr)}}
+  .area{background:var(--panel);border:1px solid var(--border);border-radius:2px;padding:16px}
+  .area h3{font-family:var(--serif);font-size:17.5px;color:var(--gold-light);margin-bottom:8px;line-height:1.35}
+  .area ul{list-style:none}
+  .area li{font-size:13.5px;color:var(--ink);padding:6px 0;border-bottom:1px solid #1d1d19;line-height:1.5}
+  .area li:last-child{border-bottom:0}
+  /* ---------- WhatsApp ---------- */
+  .passos{counter-reset:passo;display:grid;gap:12px;margin-bottom:8px}
+  .passo{background:var(--panel);border:1px solid var(--border);border-radius:2px;padding:14px 16px;display:flex;gap:14px}
+  .passo .num{
+    counter-increment:passo;flex:0 0 auto;width:30px;height:30px;border:1px solid var(--gold);
+    color:var(--gold-light);font-family:var(--serif);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:15px;
+  }
+  .passo p{font-size:14.5px;color:var(--ink);line-height:1.6}
+  .passo p strong{color:var(--white)}
+  .caixa-msg{
+    background:var(--panel2);border:1px solid var(--border);border-radius:2px;padding:16px;margin-bottom:14px;
+  }
+  .caixa-msg .rotulo{font-size:12px;color:var(--gray);margin-bottom:8px;line-height:1.5}
+  .caixa-msg .texto{font-size:15.5px;color:var(--white);line-height:1.65;overflow-wrap:anywhere;white-space:pre-wrap}
+  .btn-zap{
+    display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+    background:var(--gold);color:#141310;font-weight:700;font-size:15.5px;text-decoration:none;
+    padding:15px 18px;border-radius:2px;line-height:1.35;text-align:center;
+  }
+  .btn-zap:active{background:var(--gold-light)}
+  .legenda{font-size:12.5px;color:var(--gray);margin-top:10px;line-height:1.6;text-align:center}
+  .chat{background:#0b141a;border:1px solid var(--border);border-radius:6px;padding:18px 14px;margin-bottom:6px}
+  .chat .quem{font-size:12px;color:#8fd0a5;margin-bottom:10px;letter-spacing:.04em}
+  .bolha{
+    background:#005c4b;color:#e9edef;border-radius:8px;padding:10px 12px;max-width:88%;
+    font-size:14.5px;line-height:1.6;overflow-wrap:anywhere;white-space:pre-wrap;
+  }
+  .bolha .hora{display:block;text-align:right;font-size:11px;color:#9fc6b8;margin-top:4px}
+  .fone{font-size:15px;color:var(--ink)}
+  .fone strong{color:var(--gold-light);font-size:17px;letter-spacing:.03em}
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="marca">
+    <img src="logo.png" alt="Logo Imperial Select">
+    <div>
+      <div class="nome">IMPERIAL SELECT</div>
+      <div class="sub">Site &middot; AIOS &middot; WhatsApp</div>
+    </div>
+  </div>
+  <nav class="abas" role="tablist" aria-label="Abas da demonstração">
+    <button type="button" data-aba="site" class="ativa" role="tab">Site</button>
+    <button type="button" data-aba="aios" role="tab">AIOS<span class="contador" id="contador" hidden>0</span></button>
+    <button type="button" data-aba="whats" role="tab">WhatsApp</button>
+  </nav>
+</header>
+
+<main>
+  <!-- ============ ABA SITE ============ -->
+  <section class="painel ativa" id="painel-site">
+    <div class="dica">Demonstração: toque num serviço do site, preencha o formulário de interesse e depois abra a aba <strong>AIOS</strong>.</div>
+    <iframe id="quadro-site" src="site.html" title="Site da Imperial Select"></iframe>
+  </section>
+
+  <!-- ============ ABA AIOS ============ -->
+  <section class="painel rolavel" id="painel-aios">
+    <div class="miolo">
+      <div class="aios-topo">
+        <img src="logo.png" alt="Logo Imperial Select">
+        <h1>AIOS da loja</h1>
+      </div>
+      <p class="nota">Demonstração neste aparelho. Quem preenche o formulário no site cai aqui como alerta de novo interessado, na hora, sem ninguém precisar avisar.</p>
+
+      <h2 class="secao">Novos interessados</h2>
+      <div id="lista-alertas"></div>
+
+      <h2 class="secao">Áreas do sistema</h2>
+      <div class="areas">
+        <div class="area">
+          <h3>Veículos</h3>
+          <ul>
+            <li>Compra e venda de veículos</li>
+            <li>Inspeção veicular (shaken)</li>
+            <li>Manutenção</li>
+            <li>Seguro automotivo</li>
+            <li>Acesso a leilões de carros</li>
+            <li>Financiamento</li>
+            <li>Busca de carro no leilão: kei, compactos, família e minivans, sedans e híbridos, SUVs</li>
+          </ul>
+        </div>
+        <div class="area">
+          <h3>Conexão</h3>
+          <ul>
+            <li>Internet residencial</li>
+            <li>NTT Hikari</li>
+            <li>Docomo Hikari</li>
+            <li>SoftBank Hikari</li>
+            <li>Internet Wi-Fi</li>
+            <li>Suporte para conexão</li>
+            <li>Chip para celular</li>
+            <li>Atendimento em português</li>
+          </ul>
+        </div>
+        <div class="area">
+          <h3>Prestação de Serviços</h3>
+          <ul>
+            <li>Traduções</li>
+            <li>Suporte em geral</li>
+            <li>Documentos</li>
+            <li>Orientação</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABA WHATSAPP ============ -->
+  <section class="painel rolavel" id="painel-whats">
+    <div class="miolo">
+      <div class="aios-topo">
+        <img src="logo.png" alt="Logo Imperial Select">
+        <h1>WhatsApp da loja</h1>
+      </div>
+      <p class="fone">Número comercial: <strong>080-4528-4400</strong></p>
+      <p class="nota">O caminho é curto. A pessoa sai do site e cai na conversa com a mensagem já escrita. Nada é enviado sozinho.</p>
+
+      <h2 class="secao">Como funciona</h2>
+      <div class="passos">
+        <div class="passo"><div class="num">1</div><p><strong>No site,</strong> a pessoa toca no serviço que quer e preenche nome e WhatsApp no formulário de interesse.</p></div>
+        <div class="passo"><div class="num">2</div><p><strong>Ao enviar,</strong> aparece o botão pra continuar no WhatsApp. A mensagem já sai montada, com o nome da pessoa e o serviço escolhido.</p></div>
+        <div class="passo"><div class="num">3</div><p><strong>A conversa abre</strong> no número comercial da loja. Quem aperta enviar é a própria pessoa, no aparelho dela.</p></div>
+        <div class="passo"><div class="num">4</div><p><strong>O mesmo interesse</strong> fica registrado no AIOS, na aba ao lado, como alerta de novo interessado.</p></div>
+      </div>
+
+      <h2 class="secao">Mensagem que sai pronta</h2>
+      <div class="caixa-msg">
+        <p class="rotulo" id="rotulo-msg">A mensagem sai pronta assim, com os dados de quem preencheu:</p>
+        <p class="texto" id="texto-msg"></p>
+      </div>
+      <a class="btn-zap" id="btn-zap" href="#" target="_blank" rel="noopener">Abrir no WhatsApp com a mensagem pronta</a>
+      <p class="legenda" id="legenda-zap">O botão só abre a conversa com o texto preenchido. Nada é enviado sem a pessoa apertar enviar no WhatsApp dela.</p>
+
+      <h2 class="secao">Como a mensagem chega pra loja</h2>
+      <div class="chat">
+        <p class="quem">Conversa nova no WhatsApp da loja</p>
+        <div class="bolha"><span id="bolha-texto"></span><span class="hora" id="bolha-hora"></span></div>
+      </div>
+      <p class="nota" id="nota-chat">Exemplo na tela. Nenhuma mensagem real foi enviada.</p>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  var CHAVE = "imperial_interessados_v1";
+  var WA_NUM = "818045284400";
+
+  /* ---------- abas ---------- */
+  var botoes = document.querySelectorAll(".abas button");
+  var paineis = {
+    site: document.getElementById("painel-site"),
+    aios: document.getElementById("painel-aios"),
+    whats: document.getElementById("painel-whats")
+  };
+  var abaAtual = "site";
+  function trocar(nome){
+    abaAtual = nome;
+    botoes.forEach(function(b){ b.classList.toggle("ativa", b.getAttribute("data-aba") === nome); });
+    Object.keys(paineis).forEach(function(k){ paineis[k].classList.toggle("ativa", k === nome); });
+    if(nome === "aios") renderAlertas();
+    if(nome === "whats") renderWhats();
+    if(nome === "aios"){ var c = document.getElementById("contador"); c.classList.remove("novo"); }
+  }
+  botoes.forEach(function(b){ b.addEventListener("click", function(){ trocar(b.getAttribute("data-aba")); }); });
+
+  /* ---------- dados ---------- */
+  function ler(){
+    try{
+      var raw = localStorage.getItem(CHAVE);
+      if(!raw) return [];
+      var p = JSON.parse(raw);
+      return Array.isArray(p) ? p : [];
+    }catch(e){ return []; }
+  }
+  function esc(s){
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+    });
+  }
+  function quandoTexto(iso){
+    var d = new Date(iso);
+    if(isNaN(d.getTime())) return "";
+    var hh = String(d.getHours()); if(hh.length < 2) hh = "0" + hh;
+    var mm = String(d.getMinutes()); if(mm.length < 2) mm = "0" + mm;
+    var hoje = new Date();
+    if(d.toDateString() === hoje.toDateString()) return "hoje às " + hh + ":" + mm;
+    return d.toLocaleDateString("pt-BR") + " às " + hh + ":" + mm;
+  }
+  function horaCurta(iso){
+    var d = new Date(iso);
+    if(isNaN(d.getTime())) return "";
+    var hh = String(d.getHours()); if(hh.length < 2) hh = "0" + hh;
+    var mm = String(d.getMinutes()); if(mm.length < 2) mm = "0" + mm;
+    return hh + ":" + mm;
+  }
+
+  /* ---------- AIOS: alertas ---------- */
+  var listaEl = document.getElementById("lista-alertas");
+  var contadorEl = document.getElementById("contador");
+  var totalVisto = -1;
+  function renderAlertas(){
+    var itens = ler().slice().reverse();
+    if(contadorEl){
+      contadorEl.hidden = itens.length === 0;
+      contadorEl.textContent = String(itens.length);
+    }
+    if(!itens.length){
+      listaEl.innerHTML = '<div class="vazio">Nenhum interessado registrado ainda neste aparelho. Abra a aba Site, toque num serviço e preencha o formulário de interesse. O alerta aparece aqui na hora.</div>';
+      return;
+    }
+    var html = "";
+    itens.forEach(function(r){
+      html += '<article class="alerta">'
+        + '<div class="linha1"><span class="selo">Novo interessado</span><time>' + esc(quandoTexto(r.quando)) + '</time></div>'
+        + '<h3>' + esc(r.nome) + '</h3>'
+        + '<p><strong>Serviço:</strong> ' + esc(r.servico || r.interesse) + '</p>'
+        + '<p><strong>WhatsApp:</strong> ' + esc(r.whatsapp) + '</p>'
+        + (r.mensagem ? '<p class="msg">&ldquo;' + esc(r.mensagem) + '&rdquo;</p>' : '')
+        + '<p>Veio do site da loja.</p>'
+        + '</article>';
+    });
+    listaEl.innerHTML = html;
+  }
+
+  /* ---------- WhatsApp ---------- */
+  var textoEl = document.getElementById("texto-msg");
+  var rotuloEl = document.getElementById("rotulo-msg");
+  var btnEl = document.getElementById("btn-zap");
+  var bolhaEl = document.getElementById("bolha-texto");
+  var bolhaHoraEl = document.getElementById("bolha-hora");
+  var legendaEl = document.getElementById("legenda-zap");
+  var notaChatEl = document.getElementById("nota-chat");
+  function montarMensagem(r){
+    return "Oi. Meu nome é " + r.nome + ". Tenho interesse em: " + (r.interesse || r.servico) + ". (Meu WhatsApp: " + r.whatsapp + ")";
+  }
+  function renderWhats(){
+    var itens = ler();
+    var ultimo = itens.length ? itens[itens.length - 1] : null;
+    var texto, textoBotao;
+    if(ultimo){
+      texto = montarMensagem(ultimo);
+      textoBotao = texto;
+      rotuloEl.textContent = "Mensagem do interesse mais recente registrado neste aparelho:";
+      legendaEl.textContent = "O botão só abre a conversa com o texto preenchido. Nada é enviado sem a pessoa apertar enviar no WhatsApp dela.";
+      bolhaEl.textContent = texto;
+      bolhaHoraEl.textContent = horaCurta(ultimo.quando);
+      notaChatEl.textContent = "Exemplo na tela, montado do interesse mais recente registrado neste aparelho. Nenhuma mensagem real foi enviada.";
+    }else{
+      texto = "Oi. Meu nome é [nome de quem preenche]. Tenho interesse em: [serviço escolhido no site]. (Meu WhatsApp: [número de quem preenche])";
+      textoBotao = "Oi. Quero falar com a Imperial Select.";
+      rotuloEl.textContent = "A mensagem sai pronta assim, com os dados de quem preencheu:";
+      legendaEl.textContent = "Registre um interesse na aba Site pra ver aqui a mensagem com os dados reais. Por enquanto, o botão abre a conversa com a saudação do site.";
+      bolhaEl.textContent = texto;
+      bolhaHoraEl.textContent = "";
+      notaChatEl.textContent = "Exemplo na tela, com o modelo da mensagem que o site monta. Nenhuma mensagem real foi enviada.";
+    }
+    textoEl.textContent = texto;
+    btnEl.href = "https://wa.me/" + WA_NUM + "?text=" + encodeURIComponent(textoBotao);
+  }
+
+  /* ---------- atualizacao ao vivo ---------- */
+  function conferirNovo(){
+    var n = ler().length;
+    if(totalVisto >= 0 && n > totalVisto && abaAtual !== "aios"){
+      contadorEl.classList.add("novo");
+    }
+    if(n !== totalVisto){ totalVisto = n; renderAlertas(); if(abaAtual === "whats") renderWhats(); }
+  }
+  window.addEventListener("storage", function(e){ if(e.key === CHAVE || e.key === null) conferirNovo(); });
+  setInterval(conferirNovo, 3000);
+
+  renderAlertas();
+  renderWhats();
+  totalVisto = ler().length;
+})();
+</script>
+</body>
+</html>
