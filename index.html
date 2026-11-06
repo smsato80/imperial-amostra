@@ -32,14 +32,6 @@
     padding:10px 4px;cursor:pointer;border-radius:2px;line-height:1.25;position:relative;
   }
   .abas button.ativa{background:var(--gold);border-color:var(--gold);color:#141310}
-  .abas .contador{
-    display:inline-block;min-width:20px;padding:0 5px;margin-left:5px;border-radius:10px;
-    background:#141310;color:var(--gold-light);font-size:11.5px;line-height:1.6;vertical-align:2px;
-  }
-  .abas button.ativa .contador{background:#141310;color:var(--gold-light)}
-  .abas .contador[hidden]{display:none}
-  .abas .contador.novo{animation:pulsa 1s ease-in-out 4}
-  @keyframes pulsa{0%,100%{transform:scale(1)}50%{transform:scale(1.35)}}
   /* ---------- paineis ---------- */
   main{flex:1 1 auto;display:flex;min-height:0}
   .painel{display:none;flex:1 1 auto;min-height:0;flex-direction:column}
@@ -69,45 +61,6 @@
     padding:16px 18px;border-radius:2px;line-height:1.35;text-align:center;
   }
   .btn-aios:active{background:var(--gold-light)}
-  /* ---------- AIOS: alertas de interessados (demonstracao neste aparelho) ---------- */
-  .crm-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
-  .crm-stat{background:#121216;border:1px solid #26262c;border-radius:12px;padding:13px 15px;min-width:0}
-  .crm-stat.destaque{border-color:var(--gold-line)}
-  .crm-stat .rot{font-size:11px;letter-spacing:.18em;color:var(--gray);text-transform:uppercase}
-  .crm-stat .num{font-size:29px;font-weight:800;line-height:1.15;color:var(--white)}
-  .crm-stat.destaque .num{color:var(--gold-light)}
-  .crm-stat .sub{font-size:12.5px;color:var(--ink)}
-  .crm-lista{background:#121216;border:1px solid #26262c;border-radius:12px;overflow:hidden}
-  .crm-cab{
-    display:none;background:#17171b;color:#8f897a;font-size:11px;letter-spacing:.14em;
-    text-transform:uppercase;padding:10px 16px;gap:12px;font-weight:700;
-  }
-  .crm-alerta{
-    display:flex;flex-direction:column;gap:3px;padding:13px 16px;
-    background:rgba(201,168,106,.07);border-left:3px solid var(--gold);
-    border-top:1px solid #232329;
-  }
-  .crm-alerta:first-child{border-top:0}
-  .crm-alerta .quando{font-size:13px;font-weight:700;color:var(--white)}
-  .crm-alerta .origem{font-size:12px;color:var(--gray)}
-  .crm-alerta .nome{font-size:15px;font-weight:700;color:var(--white);overflow-wrap:anywhere}
-  .crm-alerta .fone2{font-size:12.5px;color:var(--gray);overflow-wrap:anywhere}
-  .crm-alerta .serv{font-size:14px;color:var(--ink);overflow-wrap:anywhere}
-  .crm-alerta .mens{font-size:14px;color:var(--ink);overflow-wrap:anywhere}
-  .selo-novo{
-    align-self:flex-start;background:var(--gold);color:#171510;font-size:11px;font-weight:800;
-    letter-spacing:.1em;padding:3px 12px;border-radius:10px;text-transform:uppercase;line-height:1.5;
-  }
-  .crm-vazio{
-    background:#121216;border:1px dashed var(--gold-line);border-radius:12px;padding:16px;
-    font-size:14px;color:var(--ink);line-height:1.65;
-  }
-  @media (min-width:760px){
-    .crm-cab{display:grid;grid-template-columns:110px 1.1fr 1fr 1.3fr 70px}
-    .crm-alerta{display:grid;grid-template-columns:110px 1.1fr 1fr 1.3fr 70px;gap:12px;align-items:start}
-    .crm-alerta .quando{grid-column:1}
-    .crm-alerta .selo-novo{justify-self:start}
-  }
   /* ---------- WhatsApp ---------- */
   .passos{counter-reset:passo;display:grid;gap:12px;margin-bottom:8px}
   .passo{background:var(--panel);border:1px solid var(--border);border-radius:2px;padding:14px 16px;display:flex;gap:14px}
@@ -152,7 +105,7 @@
   </div>
   <nav class="abas" role="tablist" aria-label="Abas da demonstração">
     <button type="button" data-aba="site" class="ativa" role="tab">Site</button>
-    <button type="button" data-aba="aios" role="tab">AIOS<span class="contador" id="contador" hidden>0</span></button>
+    <button type="button" data-aba="aios" role="tab">AIOS</button>
     <button type="button" data-aba="whats" role="tab">WhatsApp</button>
   </nav>
 </header>
@@ -160,7 +113,7 @@
 <main>
   <!-- ============ ABA SITE ============ -->
   <section class="painel ativa" id="painel-site">
-    <div class="dica">Demonstração: toque num serviço do site, preencha o formulário de interesse e depois abra a aba <strong>AIOS</strong>.</div>
+    <div class="dica">Demonstração: toque num serviço do site e preencha o formulário de interesse. O contato cai direto no sistema da loja, na área de interessados do <strong>AIOS</strong>.</div>
     <iframe id="quadro-site" src="site.html" title="Site da Imperial Select"></iframe>
   </section>
 
@@ -174,14 +127,7 @@
       <p class="nota">O AIOS é o sistema que organiza a loja: veículos, clientes, negociações, financeiro e serviços. Ele roda no endereço próprio da Imperial, com login da equipe. Esta página é a vitrine da demonstração. O sistema de verdade abre no botão abaixo.</p>
       <a class="btn-aios" href="https://crm.imperial-select.online/" target="_blank" rel="noopener">Abrir o AIOS</a>
       <p class="legenda">Abre em uma nova aba. A entrada é só da equipe da loja, com usuário e senha.</p>
-
-      <h2 class="secao">Interessados do site</h2>
-      <p class="nota">Quem preenche o formulário de interesse na aba Site aparece aqui na hora, neste aparelho. No sistema de verdade, esse mesmo alerta cai direto no AIOS, pra equipe atender.</p>
-      <div class="crm-stats">
-        <div class="crm-stat destaque"><div class="rot">Novos</div><div class="num" id="stat-novos">0</div><div class="sub">aguardando atendimento</div></div>
-        <div class="crm-stat"><div class="rot">Total</div><div class="num" id="stat-total">0</div><div class="sub">registros neste aparelho</div></div>
-      </div>
-      <div id="lista-alertas"></div>
+      <p class="nota">Quem preenche o formulário de interesse na aba Site cai direto na área de interessados do AIOS, como alerta pra equipe atender. Nada fica guardado nesta página.</p>
     </div>
   </section>
 
@@ -200,7 +146,7 @@
         <div class="passo"><div class="num">1</div><p><strong>No site,</strong> a pessoa toca no serviço que quer e preenche nome e WhatsApp no formulário de interesse.</p></div>
         <div class="passo"><div class="num">2</div><p><strong>Ao enviar,</strong> aparece o botão pra continuar no WhatsApp. A mensagem já sai montada, com o nome da pessoa e o serviço escolhido.</p></div>
         <div class="passo"><div class="num">3</div><p><strong>A conversa abre</strong> no número comercial da loja. Quem aperta enviar é a própria pessoa, no aparelho dela.</p></div>
-        <div class="passo"><div class="num">4</div><p><strong>O mesmo interesse</strong> fica registrado no AIOS, na aba ao lado, como alerta de novo interessado.</p></div>
+        <div class="passo"><div class="num">4</div><p><strong>O mesmo interesse</strong> cai no AIOS da loja como alerta de novo interessado, pra equipe atender.</p></div>
       </div>
 
       <h2 class="secao">Mensagem que sai pronta</h2>
@@ -223,7 +169,6 @@
 
 <script>
 (function(){
-  var CHAVE = "imperial_interessados_v1";
   var WA_NUM = "818045284400";
 
   /* ---------- abas ---------- */
@@ -233,137 +178,20 @@
     aios: document.getElementById("painel-aios"),
     whats: document.getElementById("painel-whats")
   };
-  var abaAtual = "site";
   function trocar(nome){
-    abaAtual = nome;
     botoes.forEach(function(b){ b.classList.toggle("ativa", b.getAttribute("data-aba") === nome); });
     Object.keys(paineis).forEach(function(k){ paineis[k].classList.toggle("ativa", k === nome); });
-    if(nome === "aios") renderAlertas();
-    if(nome === "whats") renderWhats();
-    if(nome === "aios"){ var c = document.getElementById("contador"); c.classList.remove("novo"); }
   }
   botoes.forEach(function(b){ b.addEventListener("click", function(){ trocar(b.getAttribute("data-aba")); }); });
 
-  /* ---------- dados ---------- */
-  function ler(){
-    try{
-      var raw = localStorage.getItem(CHAVE);
-      if(!raw) return [];
-      var p = JSON.parse(raw);
-      return Array.isArray(p) ? p : [];
-    }catch(e){ return []; }
-  }
-  function esc(s){
-    return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){
-      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
-    });
-  }
-  function quandoTexto(iso){
-    var d = new Date(iso);
-    if(isNaN(d.getTime())) return "";
-    var hh = String(d.getHours()); if(hh.length < 2) hh = "0" + hh;
-    var mm = String(d.getMinutes()); if(mm.length < 2) mm = "0" + mm;
-    var hoje = new Date();
-    if(d.toDateString() === hoje.toDateString()) return "hoje às " + hh + ":" + mm;
-    return d.toLocaleDateString("pt-BR") + " às " + hh + ":" + mm;
-  }
-  function horaCurta(iso){
-    var d = new Date(iso);
-    if(isNaN(d.getTime())) return "";
-    var hh = String(d.getHours()); if(hh.length < 2) hh = "0" + hh;
-    var mm = String(d.getMinutes()); if(mm.length < 2) mm = "0" + mm;
-    return hh + ":" + mm;
-  }
-
-  /* ---------- AIOS: alertas ---------- */
-  var listaEl = document.getElementById("lista-alertas");
-  var contadorEl = document.getElementById("contador");
-  var statNovosEl = document.getElementById("stat-novos");
-  var statTotalEl = document.getElementById("stat-total");
-  var totalVisto = -1;
-  function dataCurta(iso){
-    var d = new Date(iso);
-    if(isNaN(d.getTime())) return "";
-    function z(n){ n = String(n); return n.length < 2 ? "0" + n : n; }
-    return z(d.getDate()) + "/" + z(d.getMonth() + 1) + ", " + z(d.getHours()) + ":" + z(d.getMinutes());
-  }
-  function renderAlertas(){
-    var itens = ler().slice().reverse();
-    if(contadorEl){
-      contadorEl.hidden = itens.length === 0;
-      contadorEl.textContent = String(itens.length);
-    }
-    if(statNovosEl) statNovosEl.textContent = String(itens.length);
-    if(statTotalEl) statTotalEl.textContent = String(itens.length);
-    if(!itens.length){
-      listaEl.innerHTML = '<div class="crm-vazio">Nenhum interessado registrado ainda neste aparelho. Abra a aba Site, toque num serviço e preencha o formulário de interesse. O alerta aparece aqui na hora.</div>';
-      return;
-    }
-    var html = '<div class="crm-lista">'
-      + '<div class="crm-cab"><span>Recebido em</span><span>Nome</span><span>Serviço</span><span>Mensagem</span><span>Status</span></div>';
-    itens.forEach(function(r){
-      html += '<div class="crm-alerta">'
-        + '<div><div class="quando">' + esc(dataCurta(r.quando)) + '</div><div class="origem">veio do site</div></div>'
-        + '<div><div class="nome">' + esc(r.nome) + '</div><div class="fone2">' + esc(r.whatsapp) + '</div></div>'
-        + '<div class="serv">' + esc(r.servico || r.interesse) + '</div>'
-        + '<div class="mens">' + (r.mensagem ? esc(r.mensagem) : 'Sem mensagem') + '</div>'
-        + '<span class="selo-novo">Novo</span>'
-        + '</div>';
-    });
-    html += '</div>';
-    listaEl.innerHTML = html;
-  }
-
-  /* ---------- WhatsApp ---------- */
+  /* ---------- WhatsApp: modelo da mensagem ---------- */
   var textoEl = document.getElementById("texto-msg");
-  var rotuloEl = document.getElementById("rotulo-msg");
   var btnEl = document.getElementById("btn-zap");
   var bolhaEl = document.getElementById("bolha-texto");
-  var bolhaHoraEl = document.getElementById("bolha-hora");
-  var legendaEl = document.getElementById("legenda-zap");
-  var notaChatEl = document.getElementById("nota-chat");
-  function montarMensagem(r){
-    return "Oi. Meu nome é " + r.nome + ". Tenho interesse em: " + (r.interesse || r.servico) + ". (Meu WhatsApp: " + r.whatsapp + ")";
-  }
-  function renderWhats(){
-    var itens = ler();
-    var ultimo = itens.length ? itens[itens.length - 1] : null;
-    var texto, textoBotao;
-    if(ultimo){
-      texto = montarMensagem(ultimo);
-      textoBotao = texto;
-      rotuloEl.textContent = "Mensagem do interesse mais recente registrado neste aparelho:";
-      legendaEl.textContent = "O botão só abre a conversa com o texto preenchido. Nada é enviado sem a pessoa apertar enviar no WhatsApp dela.";
-      bolhaEl.textContent = texto;
-      bolhaHoraEl.textContent = horaCurta(ultimo.quando);
-      notaChatEl.textContent = "Exemplo na tela, montado do interesse mais recente registrado neste aparelho. Nenhuma mensagem real foi enviada.";
-    }else{
-      texto = "Oi. Meu nome é [nome de quem preenche]. Tenho interesse em: [serviço escolhido no site]. (Meu WhatsApp: [número de quem preenche])";
-      textoBotao = "Oi. Quero falar com a Imperial Select.";
-      rotuloEl.textContent = "A mensagem sai pronta assim, com os dados de quem preencheu:";
-      legendaEl.textContent = "Registre um interesse na aba Site pra ver aqui a mensagem com os dados reais. Por enquanto, o botão abre a conversa com a saudação do site.";
-      bolhaEl.textContent = texto;
-      bolhaHoraEl.textContent = "";
-      notaChatEl.textContent = "Exemplo na tela, com o modelo da mensagem que o site monta. Nenhuma mensagem real foi enviada.";
-    }
-    textoEl.textContent = texto;
-    btnEl.href = "https://wa.me/" + WA_NUM + "?text=" + encodeURIComponent(textoBotao);
-  }
-
-  /* ---------- atualizacao ao vivo ---------- */
-  function conferirNovo(){
-    var n = ler().length;
-    if(totalVisto >= 0 && n > totalVisto && abaAtual !== "aios"){
-      contadorEl.classList.add("novo");
-    }
-    if(n !== totalVisto){ totalVisto = n; renderAlertas(); if(abaAtual === "whats") renderWhats(); }
-  }
-  window.addEventListener("storage", function(e){ if(e.key === CHAVE || e.key === null) conferirNovo(); });
-  setInterval(conferirNovo, 3000);
-
-  renderAlertas();
-  renderWhats();
-  totalVisto = ler().length;
+  var texto = "Oi. Meu nome é [nome de quem preenche]. Tenho interesse em: [serviço escolhido no site]. (Meu WhatsApp: [número de quem preenche])";
+  textoEl.textContent = texto;
+  bolhaEl.textContent = texto;
+  btnEl.href = "https://wa.me/" + WA_NUM + "?text=" + encodeURIComponent("Oi. Quero falar com a Imperial Select.");
 })();
 </script>
 </body>

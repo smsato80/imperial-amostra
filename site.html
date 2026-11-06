@@ -607,11 +607,11 @@ h1,h2{font-family:var(--display);font-weight:700}
             <textarea id="fieldMensagem" name="mensagem" data-i18n-ph="fMsgPh" placeholder="Ex: procuro um kei pra trabalho, posso pagar até..."></textarea>
           </div>
           <button class="btn btn-gold btn-block" type="submit" data-i18n="fEnviar">Enviar</button>
-          <p class="help" style="margin-top:10px" data-i18n="fNota">Ao enviar, seu contato fica salvo neste aparelho pra equipe acompanhar. Você também pode continuar agora no WhatsApp.</p>
+          <p class="help" style="margin-top:10px" data-i18n="fNota">Ao enviar, seu contato vai direto pro sistema da loja, e a equipe te chama. Você também pode continuar agora no WhatsApp.</p>
         </div>
         <div class="success-box" id="successBox" role="status">
-          <strong data-i18n="okTitulo">Recebido. Obrigado!</strong>
-          <p data-i18n="okTexto">Seu interesse foi salvo. Se quiser adiantar, continue a conversa no WhatsApp.</p>
+          <strong id="okTituloEl" data-i18n="okTitulo">Recebido. Obrigado!</strong>
+          <p id="okTextoEl" data-i18n="okTexto">Seu interesse chegou pra equipe. Se quiser adiantar, continue a conversa no WhatsApp.</p>
           <div class="success-actions">
             <a class="btn btn-gold btn-sm" id="whatsContinue" href="https://wa.me/818045284400" target="_blank" rel="noopener" data-i18n="okWa">Continuar no WhatsApp</a>
             <button class="btn btn-ghost btn-sm" type="button" id="successClose" data-i18n="okFechar">Fechar</button>
@@ -625,8 +625,11 @@ h1,h2{font-family:var(--display);font-weight:700}
 <script>
 (function(){
   var WA_NUMBER = "818045284400";
-  var STORAGE_KEY = "imperial_interessados_v1";
   var LANG_KEY = "imperial_lang_v4";
+  /* Captacao real: o formulario grava na colecao interessados do sistema da loja.
+     O token abaixo e de um usuario so de criacao (sem leitura) dessa colecao. */
+  var API_URL = "https://api.imperial-select.online";
+  var CAPTURE_TOKEN = "6c580dab9b594d624a513e8d3db09721b07a6ce030c380a7bd31e0249490ef1e";
 
   var SERVICE_NAME_KEY = {
     "compra":"nCompra","shaken":"nShaken","manut":"nManut","seguro":"nSeguro",
@@ -722,9 +725,10 @@ h1,h2{font-family:var(--display);font-weight:700}
     fNome:"Seu nome", fNomePh:"Ex: Carlos Silva", fWa:"Seu WhatsApp",
     fWaHelp:"Com DDD do Japão ou do Brasil, do jeito que você usa no WhatsApp.",
     fInteresse:"Interesse", fMsg:"Mensagem (opcional)", fMsgPh:"Ex: procuro um kei pra trabalho, posso pagar até...",
-    fEnviar:"Enviar",
-    fNota:"Ao enviar, seu contato fica salvo neste aparelho pra equipe acompanhar. Você também pode continuar agora no WhatsApp.",
-    okTitulo:"Recebido. Obrigado!", okTexto:"Seu interesse foi salvo. Se quiser adiantar, continue a conversa no WhatsApp.",
+    fEnviar:"Enviar", fEnviando:"Enviando...",
+    fNota:"Ao enviar, seu contato vai direto pro sistema da loja, e a equipe te chama. Você também pode continuar agora no WhatsApp.",
+    okTitulo:"Recebido. Obrigado!", okTexto:"Seu interesse chegou pra equipe. Se quiser adiantar, continue a conversa no WhatsApp.",
+    okFalhaTitulo:"Não foi possível registrar agora", okFalhaTexto:"A conexão falhou no envio e seu contato não foi registrado. Continue pelo WhatsApp que a equipe te atende por lá.",
     okWa:"Continuar no WhatsApp", okFechar:"Fechar",
     alertFill:"Preencha seu nome, seu WhatsApp e o interesse.",
     waHeader:"Oi. Quero falar com a Imperial Select.",
@@ -801,9 +805,10 @@ h1,h2{font-family:var(--display);font-weight:700}
     fNome:"Your name", fNomePh:"E.g.: Carlos Silva", fWa:"Your WhatsApp",
     fWaHelp:"With area code, from Japan or Brazil, the way you use it on WhatsApp.",
     fInteresse:"Interest", fMsg:"Message (optional)", fMsgPh:"E.g.: I am looking for a kei for work, I can pay up to...",
-    fEnviar:"Send",
-    fNota:"When you send, your contact is saved on this device for our team to follow up. You can also continue right now on WhatsApp.",
-    okTitulo:"Received. Thank you!", okTexto:"Your interest was saved. To move faster, continue the conversation on WhatsApp.",
+    fEnviar:"Send", fEnviando:"Sending...",
+    fNota:"When you send, your contact goes straight to the shop's system and the team will reach out to you. You can also continue right now on WhatsApp.",
+    okTitulo:"Received. Thank you!", okTexto:"Your request reached our team. To move faster, continue the conversation on WhatsApp.",
+    okFalhaTitulo:"We could not register it right now", okFalhaTexto:"The connection failed and your contact was not registered. Continue on WhatsApp and the team will help you there.",
     okWa:"Continue on WhatsApp", okFechar:"Close",
     alertFill:"Fill in your name, your WhatsApp and the interest.",
     waHeader:"Hi. I would like to talk to Imperial Select.",
@@ -880,9 +885,10 @@ h1,h2{font-family:var(--display);font-weight:700}
     fNome:"お名前", fNomePh:"例：Carlos Silva", fWa:"WhatsApp番号",
     fWaHelp:"いつもWhatsAppで使っている番号をそのまま入力してください（日本は090などから）。",
     fInteresse:"ご希望のサービス", fMsg:"メッセージ（任意）", fMsgPh:"例：仕事用に軽自動車を探しています。予算は…",
-    fEnviar:"送信する",
-    fNota:"送信すると、連絡先がこの端末に保存され、担当者が対応できるようになります。今すぐWhatsAppで続けることもできます。",
-    okTitulo:"受け付けました。ありがとうございます。", okTexto:"ご希望を受け付けました。早く進めたい場合は、WhatsAppでそのままご相談いただけます。",
+    fEnviar:"送信する", fEnviando:"送信しています...",
+    fNota:"送信すると、連絡先がそのままお店のシステムに届き、担当者からご連絡します。今すぐWhatsAppで続けることもできます。",
+    okTitulo:"受け付けました。ありがとうございます。", okTexto:"ご希望が担当者に届きました。早く進めたい場合は、WhatsAppでそのままご相談いただけます。",
+    okFalhaTitulo:"今は登録できませんでした", okFalhaTexto:"接続に失敗し、連絡先は登録されませんでした。WhatsAppで続けていただければ、担当者が対応します。",
     okWa:"WhatsAppで続ける", okFechar:"閉じる",
     alertFill:"お名前、WhatsApp番号、ご希望のサービスを入力してください。",
     waHeader:"こんにちは。Imperial Selectに相談したいです。",
@@ -906,6 +912,8 @@ h1,h2{font-family:var(--display);font-weight:700}
   var formFields = document.getElementById("formFields");
   var whatsContinue = document.getElementById("whatsContinue");
   var modalSubtitle = document.getElementById("modalSubtitle");
+  var okTituloEl = document.getElementById("okTituloEl");
+  var okTextoEl = document.getElementById("okTextoEl");
 
   function applyLang(lang){
     if(!T[lang]) lang = "pt";
@@ -954,6 +962,8 @@ h1,h2{font-family:var(--display);font-weight:700}
         : t("mSub");
     }
     if(successBox) successBox.classList.remove("show");
+    if(okTituloEl) okTituloEl.textContent = t("okTitulo");
+    if(okTextoEl) okTextoEl.textContent = t("okTexto");
     if(formFields) formFields.style.display = "";
     if(backdrop){
       backdrop.classList.add("open");
@@ -1003,8 +1013,11 @@ h1,h2{font-family:var(--display);font-weight:700}
   }
 
   if(form){
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var enviando = false;
     form.addEventListener("submit", function(e){
       e.preventDefault();
+      if(enviando) return;
       var nome = (document.getElementById("fieldNome").value || "").trim();
       var whatsapp = (document.getElementById("fieldWhatsapp").value || "").trim();
       var interesse = (interestInput.value || "").trim();
@@ -1015,38 +1028,51 @@ h1,h2{font-family:var(--display);font-weight:700}
         return;
       }
 
-      var registro = {
-        nome: nome,
-        whatsapp: whatsapp,
-        interesse: interesse,
-        servico: SERVICE_CANONICAL_PT[currentService] || interesse,
-        mensagem: mensagem,
-        origem: "site",
-        idioma: currentLang,
-        quando: new Date().toISOString()
-      };
-
-      try{
-        var atual = [];
-        var raw = localStorage.getItem(STORAGE_KEY);
-        if(raw){
-          var parsed = JSON.parse(raw);
-          if(Array.isArray(parsed)) atual = parsed;
-        }
-        atual.push(registro);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(atual));
-      }catch(err){
-        // Se o navegador bloquear o localStorage, segue para o WhatsApp mesmo assim.
-      }
-
       var texto = t("waIntro").replace("{nome}", nome).replace("{interesse}", interesse);
       if(mensagem) texto += " " + mensagem;
       texto += " " + t("waPhone").replace("{whats}", whatsapp);
       var waLink = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(texto);
       if(whatsContinue) whatsContinue.href = waLink;
 
-      if(formFields) formFields.style.display = "none";
-      if(successBox) successBox.classList.add("show");
+      enviando = true;
+      if(submitBtn){ submitBtn.disabled = true; submitBtn.textContent = t("fEnviando"); }
+
+      var payload = {
+        nome: nome,
+        whatsapp: whatsapp,
+        interesse: interesse,
+        servico: SERVICE_CANONICAL_PT[currentService] || interesse,
+        origem: "site",
+        idioma: currentLang
+      };
+      if(mensagem) payload.mensagem = mensagem;
+
+      function terminar(sucesso){
+        enviando = false;
+        if(submitBtn){ submitBtn.disabled = false; submitBtn.textContent = t("fEnviar"); }
+        if(okTituloEl) okTituloEl.textContent = sucesso ? t("okTitulo") : t("okFalhaTitulo");
+        if(okTextoEl) okTextoEl.textContent = sucesso ? t("okTexto") : t("okFalhaTexto");
+        if(formFields) formFields.style.display = "none";
+        if(successBox) successBox.classList.add("show");
+      }
+
+      var ctrl = ("AbortController" in window) ? new AbortController() : null;
+      var timer = ctrl ? setTimeout(function(){ ctrl.abort(); }, 12000) : null;
+      fetch(API_URL + "/items/interessados", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + CAPTURE_TOKEN
+        },
+        body: JSON.stringify(payload),
+        signal: ctrl ? ctrl.signal : undefined
+      }).then(function(res){
+        if(timer) clearTimeout(timer);
+        terminar(!!(res && res.ok));
+      }).catch(function(){
+        if(timer) clearTimeout(timer);
+        terminar(false);
+      });
     });
   }
 
