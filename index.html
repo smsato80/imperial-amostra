@@ -71,6 +71,8 @@ h2.secao{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(
 #btnVitrineFlutuante{position:fixed;right:16px;bottom:16px;z-index:50;display:none;background:var(--branco);color:var(--preto);border:0;font:inherit;font-weight:700;font-size:13.5px;padding:12px 18px;border-radius:999px;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.45)}
 body.modo-vitrine header{display:none}
 body.modo-vitrine #btnVitrineFlutuante{display:block}
+body.modal-aberto #btnVitrineFlutuante{display:none !important}
+@media(max-width:640px){#btnVitrineFlutuante{font-size:12.5px;padding:10px 14px;right:12px;bottom:12px}}
 body.modo-vitrine .painel{display:none}
 body.modo-vitrine #painel-site{display:flex}
 body.modo-vitrine #painel-site .dica{display:none}
@@ -199,6 +201,17 @@ body.modo-vitrine #painel-site .dica{display:none}
   bV.addEventListener("click", function(){ setModo(true); });
   bA.addEventListener("click", function(){ setModo(false); });
   document.getElementById("btnVitrineFlutuante").addEventListener("click", function(){ setModo(false); });
+  var quadro = document.getElementById("quadro-site");
+  quadro.addEventListener("load", function(){
+    try {
+      var fundoModal = quadro.contentDocument.getElementById("modalFundo");
+      if (fundoModal) {
+        var sinc = function(){ document.body.classList.toggle("modal-aberto", fundoModal.classList.contains("aberto")); };
+        new MutationObserver(sinc).observe(fundoModal, { attributes: true, attributeFilter: ["class"] });
+        sinc();
+      }
+    } catch(e) {}
+  });
   /* WhatsApp: modelo da mensagem */
   var texto = "Oi. Meu nome é [nome de quem preenche]. Tenho interesse em: [serviço escolhido no site]. (Meu WhatsApp: [número de quem preenche])";
   document.getElementById("texto-msg").textContent = texto;
