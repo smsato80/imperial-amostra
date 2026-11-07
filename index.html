@@ -3,217 +3,209 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Imperial Select · Site, AIOS e WhatsApp</title>
+<title>Imperial Select · Apresentação</title>
+<link rel="icon" href="assets/simbolo-mono.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --black:#0a0a09; --panel:#121211; --panel2:#171714;
-    --gold:#c9a86a; --gold-light:#e6cd8f; --gold-line:#8a744a;
-    --white:#f4f0e4; --ink:#d9d3c1; --gray:#a79e8b; --border:#292920;
-    --serif:Georgia,"Hiragino Mincho ProN","Yu Mincho","Times New Roman",serif;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    font-family:-apple-system,"Hiragino Kaku Gothic ProN","Yu Gothic",Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-    background:var(--black); color:var(--white); line-height:1.7;
-    display:flex; flex-direction:column; height:100vh; height:100dvh;
-    -webkit-font-smoothing:antialiased;
-  }
-  /* ---------- topo ---------- */
-  .topo{background:#060605;border-bottom:2px solid var(--gold-line);flex:0 0 auto}
-  .marca{display:flex;align-items:center;gap:12px;padding:10px 16px 4px;max-width:1060px;margin:0 auto;width:100%}
-  .marca img{width:44px;height:auto;display:block}
-  .marca .nome{font-family:var(--serif);font-weight:700;font-size:17px;letter-spacing:.14em;color:var(--white);line-height:1.25}
-  .marca .sub{font-size:11px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;line-height:1.3}
-  .abas{display:flex;gap:6px;padding:8px 12px 10px;max-width:1060px;margin:0 auto;width:100%}
-  .abas button{
-    flex:1 1 0;background:transparent;border:1px solid var(--border);color:var(--ink);
-    font:inherit;font-weight:700;font-size:14px;letter-spacing:.03em;
-    padding:10px 4px;cursor:pointer;border-radius:2px;line-height:1.25;position:relative;
-  }
-  .abas button.ativa{background:var(--gold);border-color:var(--gold);color:#141310}
-  /* ---------- paineis ---------- */
-  main{flex:1 1 auto;display:flex;min-height:0}
-  .painel{display:none;flex:1 1 auto;min-height:0;flex-direction:column}
-  .painel.ativa{display:flex}
-  .dica{
-    flex:0 0 auto;background:var(--panel);border-bottom:1px solid var(--border);
-    color:var(--ink);font-size:12.5px;padding:7px 16px;text-align:center;line-height:1.5;
-  }
-  .dica strong{color:var(--gold-light);font-weight:700}
-  #quadro-site{flex:1 1 auto;width:100%;border:0;display:block;background:var(--black)}
-  .rolavel{overflow-y:auto;-webkit-overflow-scrolling:touch}
-  .miolo{max-width:1060px;margin:0 auto;width:100%;padding:26px 18px 44px}
-  /* ---------- compartilhado (WhatsApp) ---------- */
-  .aios-topo{display:flex;align-items:center;gap:12px;margin-bottom:6px}
-  .aios-topo img{width:40px;height:auto}
-  .aios-topo h1{font-family:var(--serif);font-size:23px;line-height:1.3}
-  .nota{font-size:12.5px;color:var(--gray);margin-bottom:24px;line-height:1.6}
-  h2.secao{
-    font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);
-    border-bottom:1px solid var(--border);padding-bottom:8px;margin:30px 0 14px;font-weight:700;
-  }
-  h2.secao:first-of-type{margin-top:6px}
-  /* ---------- AIOS: acesso ao sistema ---------- */
-  .btn-aios{
-    display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
-    background:var(--gold);color:#141310;font-weight:700;font-size:16.5px;text-decoration:none;
-    padding:16px 18px;border-radius:2px;line-height:1.35;text-align:center;
-  }
-  .btn-aios:active{background:var(--gold-light)}
-  .btn-sec{
-    display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:12px;
-    background:transparent;color:var(--gold-light);border:1px solid var(--gold-line);font-weight:700;font-size:15.5px;text-decoration:none;
-    padding:14px 18px;border-radius:2px;line-height:1.35;text-align:center;
-  }
-  .btn-sec:active{background:var(--panel2)}
-  /* ---------- WhatsApp ---------- */
-  .passos{counter-reset:passo;display:grid;gap:12px;margin-bottom:8px}
-  .passo{background:var(--panel);border:1px solid var(--border);border-radius:2px;padding:14px 16px;display:flex;gap:14px}
-  .passo .num{
-    counter-increment:passo;flex:0 0 auto;width:30px;height:30px;border:1px solid var(--gold);
-    color:var(--gold-light);font-family:var(--serif);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:15px;
-  }
-  .passo p{font-size:14.5px;color:var(--ink);line-height:1.6}
-  .passo p strong{color:var(--white)}
-  .caixa-msg{
-    background:var(--panel2);border:1px solid var(--border);border-radius:2px;padding:16px;margin-bottom:14px;
-  }
-  .caixa-msg .rotulo{font-size:12px;color:var(--gray);margin-bottom:8px;line-height:1.5}
-  .caixa-msg .texto{font-size:15.5px;color:var(--white);line-height:1.65;overflow-wrap:anywhere;white-space:pre-wrap}
-  .btn-zap{
-    display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
-    background:var(--gold);color:#141310;font-weight:700;font-size:15.5px;text-decoration:none;
-    padding:15px 18px;border-radius:2px;line-height:1.35;text-align:center;
-  }
-  .btn-zap:active{background:var(--gold-light)}
-  .legenda{font-size:12.5px;color:var(--gray);margin-top:10px;line-height:1.6;text-align:center}
-  .chat{background:#0b141a;border:1px solid var(--border);border-radius:6px;padding:18px 14px;margin-bottom:6px}
-  .chat .quem{font-size:12px;color:#8fd0a5;margin-bottom:10px;letter-spacing:.04em}
-  .bolha{
-    background:#005c4b;color:#e9edef;border-radius:8px;padding:10px 12px;max-width:88%;
-    font-size:14.5px;line-height:1.6;overflow-wrap:anywhere;white-space:pre-wrap;
-  }
-  .bolha .hora{display:block;text-align:right;font-size:11px;color:#9fc6b8;margin-top:4px}
-  .fone{font-size:15px;color:var(--ink)}
-  .fone strong{color:var(--gold-light);font-size:17px;letter-spacing:.03em}
+:root{--preto:#0B0D10;--grafite:#1A1E24;--grafite2:#22272F;--branco:#F5F3EE;--dourado:#B89A5A;--dourado-claro:#D6BC7E;--cinza:#8D949D;--cinza-claro:#C9CDD3;--linha:rgba(245,243,238,.1);--linha-forte:rgba(245,243,238,.18)}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:"Inter","Noto Sans JP",-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--preto);color:var(--branco);display:flex;flex-direction:column;height:100vh;height:100dvh;-webkit-font-smoothing:antialiased;line-height:1.6}
+h1,h2,h3{font-family:"Manrope","Noto Sans JP",sans-serif;line-height:1.2}
+header{flex:0 0 auto;background:#08090B;border-bottom:1px solid var(--linha)}
+.topo-in{max-width:1180px;margin:0 auto;width:100%;padding:12px 18px 0}
+.marca{display:flex;align-items:center;gap:12px}
+.marca img{height:34px;width:auto}
+.marca .wm{line-height:1.05}
+.marca .wm b{font-family:"Manrope",sans-serif;font-weight:800;font-size:15.5px;letter-spacing:.22em;display:block}
+.marca .wm span{font-size:9px;font-weight:600;letter-spacing:.52em;color:var(--dourado);display:block;margin-top:3px}
+.marca .demo{margin-left:auto;font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--cinza);border:1px solid var(--linha-forte);padding:6px 12px;border-radius:999px;text-transform:uppercase}
+.modos{display:flex;gap:8px;margin-top:14px}
+.modos button{flex:1;background:transparent;border:1px solid var(--linha-forte);color:var(--cinza-claro);font:inherit;font-weight:700;font-size:14px;padding:11px 8px;border-radius:10px;cursor:pointer}
+.modos button.ativa{background:var(--branco);color:var(--preto);border-color:var(--branco)}
+.abas{display:none;gap:6px;margin-top:10px;padding-bottom:12px;flex-wrap:wrap}
+body.modo-apresentacao .abas{display:flex}
+.abas button{flex:1 1 auto;background:transparent;border:1px solid var(--linha);color:var(--cinza-claro);font:inherit;font-weight:600;font-size:13.5px;padding:10px 10px;border-radius:10px;cursor:pointer;white-space:nowrap}
+.abas button.ativa{background:var(--dourado);border-color:var(--dourado);color:#14161a;font-weight:700}
+main{flex:1 1 auto;display:flex;min-height:0}
+.painel{display:none;flex:1 1 auto;min-height:0;flex-direction:column}
+.painel.ativa{display:flex}
+.rolavel{overflow-y:auto;-webkit-overflow-scrolling:touch}
+.miolo{max-width:1180px;margin:0 auto;width:100%;padding:30px 18px 48px}
+.dica{flex:0 0 auto;background:var(--grafite);border-bottom:1px solid var(--linha);color:var(--cinza-claro);font-size:12.5px;padding:8px 16px;text-align:center}
+.dica strong{color:var(--dourado-claro)}
+#quadro-site{flex:1 1 auto;width:100%;border:0;display:block;background:var(--preto)}
+.micro{font-size:11.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--dourado);display:flex;align-items:center;gap:12px}
+.micro::before{content:"";width:30px;height:1px;background:var(--dourado)}
+h1.tit{font-size:clamp(26px,4.6vw,38px);font-weight:800;margin:14px 0 10px}
+.sub{color:var(--cinza-claro);font-size:15.5px;max-width:44em}
+.jornada{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:30px}
+.passo{background:var(--grafite);border:1px solid var(--linha);border-radius:14px;padding:22px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:8px;transition:border-color .25s}
+.passo:hover{border-color:rgba(184,154,90,.5)}
+.passo .n{font-family:"Manrope",sans-serif;font-size:12px;font-weight:800;letter-spacing:.2em;color:var(--dourado)}
+.passo h3{font-size:17.5px}
+.passo p{color:var(--cinza);font-size:14px;line-height:1.6}
+.passo .vai{margin-top:auto;padding-top:8px;font-weight:700;font-size:13.5px;color:var(--dourado-claro)}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:var(--dourado);color:#14161a;font-weight:700;font-size:16px;text-decoration:none;padding:15px 18px;border-radius:10px;border:0;cursor:pointer;font-family:inherit}
+.btn:hover{background:var(--dourado-claro)}
+.btn-linha2{display:flex;align-items:center;justify-content:center;width:100%;background:transparent;color:var(--dourado-claro);border:1px solid rgba(184,154,90,.5);font-weight:700;font-size:15px;text-decoration:none;padding:13px 18px;border-radius:10px;margin-top:12px}
+.legenda{font-size:12.5px;color:var(--cinza);margin-top:10px;text-align:center;line-height:1.6}
+.nota{font-size:14.5px;color:var(--cinza-claro);line-height:1.65;margin-bottom:20px;max-width:46em}
+h2.secao{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--dourado);border-bottom:1px solid var(--linha);padding-bottom:8px;margin:30px 0 14px}
+.passos{counter-reset:p;display:grid;gap:12px}
+.passo-z{display:flex;gap:14px;background:var(--grafite);border:1px solid var(--linha);border-radius:12px;padding:15px 16px}
+.passo-z .num{counter-increment:p;flex:0 0 auto;width:30px;height:30px;border:1px solid var(--dourado);border-radius:50%;color:var(--dourado-claro);font-family:"Manrope",sans-serif;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px}
+.passo-z p{font-size:14.5px;color:var(--cinza-claro)}
+.passo-z p strong{color:var(--branco)}
+.caixa-msg{background:var(--grafite2);border:1px solid var(--linha);border-radius:12px;padding:16px;margin-bottom:14px}
+.caixa-msg .rotulo{font-size:12px;color:var(--cinza);margin-bottom:8px}
+.caixa-msg .texto{font-size:15px;color:var(--branco);line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere}
+.chat{background:#0B141A;border:1px solid var(--linha);border-radius:12px;padding:16px 14px}
+.chat .quem{font-size:12px;color:#8FD0A5;margin-bottom:10px}
+.bolha{background:#005C4B;color:#E9EDEF;border-radius:8px;padding:10px 12px;max-width:88%;font-size:14.5px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
+.bolha .hora{display:block;text-align:right;font-size:11px;color:#9FC6B8;margin-top:4px}
+.fone{font-size:15px;color:var(--cinza-claro)}
+.fone strong{color:var(--dourado-claro);font-size:17px}
+#btnVitrineFlutuante{position:fixed;right:16px;bottom:16px;z-index:50;display:none;background:var(--branco);color:var(--preto);border:0;font:inherit;font-weight:700;font-size:13.5px;padding:12px 18px;border-radius:999px;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+body.modo-vitrine header{display:none}
+body.modo-vitrine #btnVitrineFlutuante{display:block}
+body.modo-vitrine .painel{display:none}
+body.modo-vitrine #painel-site{display:flex}
+body.modo-vitrine #painel-site .dica{display:none}
+@media(max-width:560px){.marca .demo{display:none}.abas button{font-size:12.5px;padding:9px 6px}}
 </style>
 </head>
-<body>
-
-<header class="topo">
-  <div class="marca">
-    <img src="logo.png" alt="Logo Imperial Select">
-    <div>
-      <div class="nome">IMPERIAL SELECT</div>
-      <div class="sub">Site &middot; AIOS &middot; WhatsApp</div>
+<body class="modo-apresentacao">
+<header>
+  <div class="topo-in">
+    <div class="marca">
+      <img src="assets/simbolo-mono.png" alt="" width="82" height="34">
+      <div class="wm"><b>IMPERIAL</b><span>SELECT</span></div>
+      <span class="demo">Apresentação</span>
     </div>
+    <div class="modos" role="group" aria-label="Modo de exibição">
+      <button type="button" id="modoApresentacao" class="ativa">Modo Apresentação</button>
+      <button type="button" id="modoVitrine">Modo Vitrine</button>
+    </div>
+    <nav class="abas" role="tablist" aria-label="Abas da apresentação">
+      <button type="button" data-aba="visao" class="ativa" role="tab">Visão geral</button>
+      <button type="button" data-aba="site" role="tab">Site</button>
+      <button type="button" data-aba="aios" role="tab">AIOS</button>
+      <button type="button" data-aba="whats" role="tab">WhatsApp</button>
+      <button type="button" data-aba="simulador" role="tab">Simulador</button>
+    </nav>
   </div>
-  <nav class="abas" role="tablist" aria-label="Abas da demonstração">
-    <button type="button" data-aba="site" class="ativa" role="tab">Site</button>
-    <button type="button" data-aba="aios" role="tab">AIOS</button>
-    <button type="button" data-aba="whats" role="tab">WhatsApp</button>
-    <button type="button" data-aba="simulador" role="tab">Simulador</button>
-  </nav>
 </header>
-
 <main>
-  <!-- ============ ABA SITE ============ -->
-  <section class="painel ativa" id="painel-site">
+  <section class="painel rolavel ativa" id="painel-visao">
+    <div class="miolo">
+      <p class="micro">A solução completa</p>
+      <h1 class="tit">Do primeiro clique ao atendimento, tudo conectado.</h1>
+      <p class="sub">Esta apresentação mostra a jornada inteira da Imperial Select: o cliente chega pelo site, o contato cai no sistema da loja, a equipe atende pelo WhatsApp e a nova frente de habilitação treina no simulador.</p>
+      <div class="jornada">
+        <a class="passo" href="#" data-ir="site"><span class="n">01</span><h3>Site comercial</h3><p>Veículos, conectividade, traduções e Drive School, com a nova identidade premium da Imperial.</p><span class="vai">Ver o site</span></a>
+        <a class="passo" href="#" data-ir="site"><span class="n">02</span><h3>Envio de contato</h3><p>O visitante toca num serviço, preenche nome e WhatsApp e envia. Sem criar conta, sem sair da página.</p><span class="vai">Testar no site</span></a>
+        <a class="passo" href="#" data-ir="aios"><span class="n">03</span><h3>Integração ao sistema</h3><p>O contato entra direto na área de interessados do AIOS, com alerta para a equipe atender.</p><span class="vai">Abrir o AIOS</span></a>
+        <a class="passo" href="#" data-ir="whats"><span class="n">04</span><h3>Atendimento por WhatsApp</h3><p>A conversa abre no número da loja com a mensagem já montada: nome, serviço e telefone de quem enviou.</p><span class="vai">Ver como funciona</span></a>
+        <a class="passo" href="#" data-ir="simulador"><span class="n">05</span><h3>Drive School e simulador</h3><p>Assessoria para converter a habilitação e simulado de treinamento com 50 questões e 30 minutos.</p><span class="vai">Conhecer</span></a>
+      </div>
+      <p class="legenda" style="text-align:left;margin-top:22px">Os dados mostrados nesta apresentação são da demonstração. Contatos reais de clientes ficam só dentro do sistema privado da loja.</p>
+    </div>
+  </section>
+
+  <section class="painel" id="painel-site">
     <div class="dica">Demonstração: toque num serviço do site e preencha o formulário de interesse. O contato cai direto no sistema da loja, na área de interessados do <strong>AIOS</strong>.</div>
     <iframe id="quadro-site" src="site.html" title="Site da Imperial Select"></iframe>
   </section>
 
-  <!-- ============ ABA AIOS ============ -->
   <section class="painel rolavel" id="painel-aios">
     <div class="miolo">
-      <div class="aios-topo">
-        <img src="logo.png" alt="Logo Imperial Select">
-        <h1>AIOS da Imperial Select</h1>
-      </div>
-      <p class="nota">O AIOS é o sistema que organiza a loja: veículos, clientes, negociações, financeiro e serviços. Ele roda no endereço próprio da Imperial, com login da equipe. Esta página é a vitrine da demonstração. O sistema de verdade abre no botão abaixo.</p>
-      <a class="btn-aios" href="https://crm.imperial-select.online/" target="_blank" rel="noopener">Abrir o AIOS</a>
+      <p class="micro">Sistema da loja</p>
+      <h1 class="tit">AIOS da Imperial Select</h1>
+      <p class="nota">O AIOS é o sistema que organiza a loja: veículos, clientes, negociações, financeiro e serviços. Ele roda no endereço próprio da Imperial, com login individual da equipe. Quem preenche o formulário de interesse no site cai direto na área de interessados do AIOS, como alerta para a equipe atender.</p>
+      <a class="btn" href="https://crm.imperial-select.online/" target="_blank" rel="noopener">Abrir o AIOS</a>
       <p class="legenda">Abre em uma nova aba. A entrada é só da equipe da loja, com usuário e senha.</p>
-      <p class="nota">Quem preenche o formulário de interesse na aba Site cai direto na área de interessados do AIOS, como alerta pra equipe atender. Nada fica guardado nesta página.</p>
     </div>
   </section>
 
-  <!-- ============ ABA WHATSAPP ============ -->
   <section class="painel rolavel" id="painel-whats">
     <div class="miolo">
-      <div class="aios-topo">
-        <img src="logo.png" alt="Logo Imperial Select">
-        <h1>WhatsApp da loja</h1>
-      </div>
+      <p class="micro">Atendimento</p>
+      <h1 class="tit">WhatsApp da loja</h1>
       <p class="fone">Número comercial: <strong>080-4528-4400</strong></p>
       <p class="nota">O caminho é curto. A pessoa sai do site e cai na conversa com a mensagem já escrita. Nada é enviado sozinho.</p>
-
       <h2 class="secao">Como funciona</h2>
       <div class="passos">
-        <div class="passo"><div class="num">1</div><p><strong>No site,</strong> a pessoa toca no serviço que quer e preenche nome e WhatsApp no formulário de interesse.</p></div>
-        <div class="passo"><div class="num">2</div><p><strong>Ao enviar,</strong> aparece o botão pra continuar no WhatsApp. A mensagem já sai montada, com o nome da pessoa e o serviço escolhido.</p></div>
-        <div class="passo"><div class="num">3</div><p><strong>A conversa abre</strong> no número comercial da loja. Quem aperta enviar é a própria pessoa, no aparelho dela.</p></div>
-        <div class="passo"><div class="num">4</div><p><strong>O mesmo interesse</strong> cai no AIOS da loja como alerta de novo interessado, pra equipe atender.</p></div>
+        <div class="passo-z"><div class="num">1</div><p><strong>No site,</strong> a pessoa toca no serviço que quer e preenche nome e WhatsApp no formulário de interesse.</p></div>
+        <div class="passo-z"><div class="num">2</div><p><strong>Ao enviar,</strong> aparece o botão para continuar no WhatsApp. A mensagem já sai montada, com o nome da pessoa e o serviço escolhido.</p></div>
+        <div class="passo-z"><div class="num">3</div><p><strong>A conversa abre</strong> no número comercial da loja. Quem aperta enviar é a própria pessoa, no aparelho dela.</p></div>
+        <div class="passo-z"><div class="num">4</div><p><strong>O mesmo interesse</strong> cai no AIOS da loja como alerta de novo interessado, para a equipe atender.</p></div>
       </div>
-
       <h2 class="secao">Mensagem que sai pronta</h2>
       <div class="caixa-msg">
-        <p class="rotulo" id="rotulo-msg">A mensagem sai pronta assim, com os dados de quem preencheu:</p>
+        <p class="rotulo">A mensagem sai pronta assim, com os dados de quem preencheu:</p>
         <p class="texto" id="texto-msg"></p>
       </div>
-      <a class="btn-zap" id="btn-zap" href="#" target="_blank" rel="noopener">Abrir no WhatsApp com a mensagem pronta</a>
-      <p class="legenda" id="legenda-zap">O botão só abre a conversa com o texto preenchido. Nada é enviado sem a pessoa apertar enviar no WhatsApp dela.</p>
-
-      <h2 class="secao">Como a mensagem chega pra loja</h2>
+      <a class="btn" id="btn-zap" href="#" target="_blank" rel="noopener">Abrir no WhatsApp com a mensagem pronta</a>
+      <p class="legenda">O botão só abre a conversa com o texto preenchido. Nada é enviado sem a pessoa apertar enviar no WhatsApp dela.</p>
+      <h2 class="secao">Como a mensagem chega para a loja</h2>
       <div class="chat">
         <p class="quem">Conversa nova no WhatsApp da loja</p>
         <div class="bolha"><span id="bolha-texto"></span><span class="hora" id="bolha-hora"></span></div>
       </div>
-      <p class="nota" id="nota-chat">Exemplo na tela. Nenhuma mensagem real foi enviada.</p>
+      <p class="legenda">Exemplo na tela. Nenhuma mensagem real foi enviada.</p>
     </div>
   </section>
-  <!-- ============ ABA SIMULADOR ============ -->
+
   <section class="painel rolavel" id="painel-simulador">
     <div class="miolo">
-      <div class="aios-topo">
-        <img src="logo.png" alt="Logo Imperial Select">
-        <h1>Simulador de provas</h1>
-      </div>
-      <p class="nota">Nova frente da Imperial: simulado pra quem vai converter a habilitação do Brasil aqui no Japão. São 50 questões de certo ou errado, com tempo de 30 minutos, do jeito que a prova é hoje. A pessoa treina no celular e já vê o resultado na hora.</p>
-      <a class="btn-aios" href="https://imperial-drive-school.vercel.app/" target="_blank" rel="noopener">Abrir o simulador de provas</a>
-      <p class="legenda">Abre em uma nova aba. É a versão de demonstração, pra você testar como o aluno vai usar.</p>
-      <a class="btn-sec" href="https://imperial-drive-school-apresentacao.vercel.app/" target="_blank" rel="noopener">Ver a apresentação da Drive School</a>
+      <p class="micro">Nova frente</p>
+      <h1 class="tit">Imperial Drive School</h1>
+      <p class="nota">Simulado para quem vai converter a habilitação do Brasil aqui no Japão. São 50 questões de certo ou errado, com tempo de 30 minutos, no formato da prova atual. A pessoa treina no celular e vê o resultado na hora, com revisão questão por questão.</p>
+      <a class="btn" href="https://imperial-drive-school.vercel.app/" target="_blank" rel="noopener">Abrir o simulador de provas</a>
+      <p class="legenda">Abre em uma nova aba. Versão de demonstração, para você testar como o aluno vai usar.</p>
+      <a class="btn-linha2" href="https://imperial-drive-school-apresentacao.vercel.app/" target="_blank" rel="noopener">Ver a apresentação da Drive School</a>
       <p class="legenda">As telas que explicam a ideia, os valores e como fica a parte de cada um.</p>
     </div>
   </section>
 </main>
-
+<button type="button" id="btnVitrineFlutuante">Voltar à apresentação</button>
 <script>
 (function(){
   var WA_NUM = "818045284400";
-
-  /* ---------- abas ---------- */
   var botoes = document.querySelectorAll(".abas button");
-  var paineis = {
-    site: document.getElementById("painel-site"),
-    aios: document.getElementById("painel-aios"),
-    whats: document.getElementById("painel-whats"),
-    simulador: document.getElementById("painel-simulador")
-  };
+  var paineis = {};
+  ["visao","site","aios","whats","simulador"].forEach(function(k){ paineis[k] = document.getElementById("painel-" + k); });
   function trocar(nome){
     botoes.forEach(function(b){ b.classList.toggle("ativa", b.getAttribute("data-aba") === nome); });
     Object.keys(paineis).forEach(function(k){ paineis[k].classList.toggle("ativa", k === nome); });
   }
   botoes.forEach(function(b){ b.addEventListener("click", function(){ trocar(b.getAttribute("data-aba")); }); });
-
-  /* ---------- WhatsApp: modelo da mensagem ---------- */
-  var textoEl = document.getElementById("texto-msg");
-  var btnEl = document.getElementById("btn-zap");
-  var bolhaEl = document.getElementById("bolha-texto");
+  document.querySelectorAll("[data-ir]").forEach(function(a){
+    a.addEventListener("click", function(e){ e.preventDefault(); trocar(a.getAttribute("data-ir")); });
+  });
+  /* modos */
+  var bA = document.getElementById("modoApresentacao");
+  var bV = document.getElementById("modoVitrine");
+  function setModo(vitrine){
+    document.body.classList.toggle("modo-vitrine", vitrine);
+    document.body.classList.toggle("modo-apresentacao", !vitrine);
+    bV.classList.toggle("ativa", vitrine);
+    bA.classList.toggle("ativa", !vitrine);
+    if(vitrine) trocar("site");
+  }
+  bV.addEventListener("click", function(){ setModo(true); });
+  bA.addEventListener("click", function(){ setModo(false); });
+  document.getElementById("btnVitrineFlutuante").addEventListener("click", function(){ setModo(false); });
+  /* WhatsApp: modelo da mensagem */
   var texto = "Oi. Meu nome é [nome de quem preenche]. Tenho interesse em: [serviço escolhido no site]. (Meu WhatsApp: [número de quem preenche])";
-  textoEl.textContent = texto;
-  bolhaEl.textContent = texto;
-  btnEl.href = "https://wa.me/" + WA_NUM + "?text=" + encodeURIComponent("Oi. Quero falar com a Imperial Select.");
+  document.getElementById("texto-msg").textContent = texto;
+  document.getElementById("bolha-texto").textContent = texto;
+  document.getElementById("btn-zap").href = "https://wa.me/" + WA_NUM + "?text=" + encodeURIComponent("Oi. Quero falar com a Imperial Select.");
+  var agora = new Date();
+  document.getElementById("bolha-hora").textContent = String(agora.getHours()).padStart(2,"0") + ":" + String(agora.getMinutes()).padStart(2,"0");
 })();
 </script>
 </body>
