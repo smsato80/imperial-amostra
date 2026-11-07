@@ -61,6 +61,12 @@
     padding:16px 18px;border-radius:2px;line-height:1.35;text-align:center;
   }
   .btn-aios:active{background:var(--gold-light)}
+  .btn-sec{
+    display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:12px;
+    background:transparent;color:var(--gold-light);border:1px solid var(--gold-line);font-weight:700;font-size:15.5px;text-decoration:none;
+    padding:14px 18px;border-radius:2px;line-height:1.35;text-align:center;
+  }
+  .btn-sec:active{background:var(--panel2)}
   /* ---------- WhatsApp ---------- */
   .passos{counter-reset:passo;display:grid;gap:12px;margin-bottom:8px}
   .passo{background:var(--panel);border:1px solid var(--border);border-radius:2px;padding:14px 16px;display:flex;gap:14px}
@@ -107,6 +113,7 @@
     <button type="button" data-aba="site" class="ativa" role="tab">Site</button>
     <button type="button" data-aba="aios" role="tab">AIOS</button>
     <button type="button" data-aba="whats" role="tab">WhatsApp</button>
+    <button type="button" data-aba="simulador" role="tab">Simulador</button>
   </nav>
 </header>
 
@@ -165,6 +172,20 @@
       <p class="nota" id="nota-chat">Exemplo na tela. Nenhuma mensagem real foi enviada.</p>
     </div>
   </section>
+  <!-- ============ ABA SIMULADOR ============ -->
+  <section class="painel rolavel" id="painel-simulador">
+    <div class="miolo">
+      <div class="aios-topo">
+        <img src="logo.png" alt="Logo Imperial Select">
+        <h1>Simulador de provas</h1>
+      </div>
+      <p class="nota">Nova frente da Imperial: simulado pra quem vai converter a habilitação do Brasil aqui no Japão. São 50 questões de certo ou errado, com tempo de 30 minutos, do jeito que a prova é hoje. A pessoa treina no celular e já vê o resultado na hora.</p>
+      <a class="btn-aios" href="https://imperial-drive-school.vercel.app/" target="_blank" rel="noopener">Abrir o simulador de provas</a>
+      <p class="legenda">Abre em uma nova aba. É a versão de demonstração, pra você testar como o aluno vai usar.</p>
+      <a class="btn-sec" href="https://imperial-drive-school-apresentacao.vercel.app/" target="_blank" rel="noopener">Ver a apresentação da Drive School</a>
+      <p class="legenda">As telas que explicam a ideia, os valores e como fica a parte de cada um.</p>
+    </div>
+  </section>
 </main>
 
 <script>
@@ -176,7 +197,8 @@
   var paineis = {
     site: document.getElementById("painel-site"),
     aios: document.getElementById("painel-aios"),
-    whats: document.getElementById("painel-whats")
+    whats: document.getElementById("painel-whats"),
+    simulador: document.getElementById("painel-simulador")
   };
   function trocar(nome){
     botoes.forEach(function(b){ b.classList.toggle("ativa", b.getAttribute("data-aba") === nome); });
