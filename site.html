@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/imperial-hero.webp" media="(min-width: 768px)">
+<link rel="preload" as="image" href="assets/imperial-hero.jpg" media="(min-width: 768px)">
 <style>
 :root{
   --preto:#0B0D10; --grafite:#1A1E24; --grafite2:#22272F; --branco:#F5F3EE;
@@ -84,8 +84,8 @@ header.menu-aberto .menu-mobile{display:block}
 .hotspot:hover{background:rgba(184,154,90,.10);box-shadow:inset 0 0 0 2px rgba(184,154,90,.55)}
 .hotspot:focus-visible{outline:3px solid var(--dourado);outline-offset:2px;background:rgba(184,154,90,.12)}
 .hero-mob{display:none}
-.hero-mob-foto{line-height:0}
-.hero-mob-foto img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.hero-mob-foto{line-height:0;position:relative;overflow:hidden;aspect-ratio:911/696}
+.hero-mob-foto img{position:absolute;left:-83.5%;top:0;width:183.5%;max-width:none;height:auto}
 .hero-mob-in{padding:30px 0 10px}
 .hero-mob-in .micro{margin-bottom:16px}
 .hero-mob-h1{font-size:clamp(31px,8.6vw,42px);font-weight:800;line-height:1.16;font-family:var(--fonte-titulo)}
@@ -305,10 +305,7 @@ footer{border-top:1px solid var(--linha);padding:64px 0 34px;background:var(--pr
   <h1 class="sr-only" data-i18n="heroH1"></h1>
   <p class="sr-only" data-i18n="heroSub"></p>
   <div class="hero-wrap">
-    <picture>
-      <source srcset="assets/imperial-hero.webp" type="image/webp">
-      <img src="assets/imperial-hero.png" data-i18n-alt="heroAlt" alt="" fetchpriority="high" width="1672" height="941">
-    </picture>
+    <img src="assets/imperial-hero.jpg" data-i18n-alt="heroAlt" alt="" fetchpriority="high" width="1672" height="941">
     <a class="hotspot" style="left:3.6%;top:63.3%;width:21.6%;height:8.7%" href="#divisoes" data-i18n-aria="heroCta1"></a>
     <button type="button" class="hotspot" style="left:25.7%;top:63.3%;width:19.6%;height:8.7%" data-service="geral-atendimento" data-i18n-aria="heroCta2"></button>
     <a class="hotspot" style="left:6.6%;top:80.4%;width:15.6%;height:7.7%" href="#veiculos" data-i18n-aria="navVeiculos"></a>
@@ -317,7 +314,7 @@ footer{border-top:1px solid var(--linha);padding:64px 0 34px;background:var(--pr
     <a class="hotspot" style="left:75.8%;top:80%;width:17.2%;height:8.8%" href="#driveschool" data-i18n-aria="navDrive"></a>
   </div>
   <div class="hero-mob">
-    <div class="hero-mob-foto"><picture><source srcset="assets/imperial-hero-mobile.webp" type="image/webp"><img src="assets/imperial-hero-mobile.png" alt="" width="911" height="696" fetchpriority="high"></picture></div>
+    <div class="hero-mob-foto"><img src="assets/imperial-hero.jpg" alt="" width="1672" height="941" fetchpriority="high"></div>
     <div class="wrap hero-mob-in">
       <p class="micro" data-i18n="heroMicro"></p>
       <h1 class="hero-mob-h1" data-i18n="heroH1"></h1>
