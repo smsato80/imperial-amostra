@@ -2,6 +2,12 @@
 
 Formato: data, commit, o que mudou. Histórico de publicações e pontos de restauração em `RELEASES.md`.
 
+## 2026-11-08 — Hero em WebP + Voltar na 4ª etapa (commit e6db1dd)
+- Hero otimizado com autorização expressa do Minoru: WebP q92 (286.718 bytes) gerado do PNG oficial, mesmas dimensões (1672×941), enquadramento, cores, reflexos e logomarcas; comparação visual lado a lado em 1440px e 390px e zoom na área do carro/loja sem diferença perceptível (PSNR 34,9 dB). O PNG original (2.015.055 bytes, SHA-256 b8850578…) permanece no repositório como backup e é o fallback do <picture> e do image-set da faixa de reflexo.
+- Botão Voltar corrigido: a regra de exibição cobria só as etapas 2 e 3; agora cobre também a 4ª, sem mudança de design. Verificado com cliques reais (visibilidade + retorno até a etapa 1) em fibra (4 etapas), shaken e compra (3 etapas).
+- Desempenho medido localmente (servidor de desenvolvimento, throttling simulado do Lighthouse mobile, antes × depois nas mesmas condições): Performance 64 → 71; LCP simulado 22,0s → 10,5s; Acessibilidade 100, Boas práticas 96, SEO 100 e CLS 0 mantidos. Arquivo do hero: −85,8%.
+- Testes: 45/45 (desktop) + 39/39 (mobile) + suíte do Voltar, tudo com mock de rede identificado. GA4 não configurado; nenhum envio real ao AIOS.
+
 ## 2026-11-08 — Refinamento mobile premium (commit 8ecd3c5)
 - Formulários mobile: validação inline sem nenhum alert() — WhatsApp validado (Japão 10/11 dígitos começando com 0; Brasil com DDD ou +55; internacional 7–15 dígitos), e-mail opcional validado quando preenchido, erro exibido junto ao campo (destaque + texto) com foco no primeiro erro. Etapas em blocos de ~3 perguntas (shaken/manuais ganharam 3ª etapa); modal limitado à altura útil da tela, inclusive em telas curtas (667px) e paisagem.
 - Divisões no celular: cards horizontais (foto oficial à esquerda, nome/descrição/Conhecer à direita), ~146px cada; seção caiu de ~1.900px para ~995px no 390px.
