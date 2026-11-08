@@ -2,6 +2,15 @@
 
 Formato: data, commit, o que mudou. Histórico de publicações e pontos de restauração em `RELEASES.md`.
 
+## 2026-11-08 — Refinamento mobile premium (commit 8ecd3c5)
+- Formulários mobile: validação inline sem nenhum alert() — WhatsApp validado (Japão 10/11 dígitos começando com 0; Brasil com DDD ou +55; internacional 7–15 dígitos), e-mail opcional validado quando preenchido, erro exibido junto ao campo (destaque + texto) com foco no primeiro erro. Etapas em blocos de ~3 perguntas (shaken/manuais ganharam 3ª etapa); modal limitado à altura útil da tela, inclusive em telas curtas (667px) e paisagem.
+- Divisões no celular: cards horizontais (foto oficial à esquerda, nome/descrição/Conhecer à direita), ~146px cada; seção caiu de ~1.900px para ~995px no 390px.
+- Barra fixa de contato no celular ("Falar com a Imperial") com safe-area, some com formulário/lightbox abertos e não encobre o rodapé; header mobile compacto (64px).
+- Lightbox com zoom ao tocar na arte; galeria 2 colunas no celular; QR menor; espaçamentos de seção reduzidos no mobile; prefers-reduced-motion respeitado.
+- Medição de conversão instrumentada via dataLayer (service_click, form_start, form_step, form_submit_success, form_submit_error, whatsapp_click) com serviço e idioma, sem nenhum dado pessoal. Nenhuma ferramenta de analytics está conectada ainda.
+- Acessibilidade: aria-label nos botões de ampliar (atualiza com o idioma) e alvo de toque do FAQ da Drive School ≥24px. Lighthouse local (servidor de desenvolvimento): Acessibilidade 100, Boas práticas 96, SEO 100, CLS 0; Performance 66–70 limitada pelo PNG oficial do hero (2,0 MB) sob throttling simulado — arquivo protegido, troca por WebP depende de autorização.
+- Testes: 39/39 mobile (8 larguras, 5 alturas, paisagem, PT/JA, validação, analytics) + 45/45 de regressão desktop, tudo com mock de rede identificado.
+
 ## 2026-11-08 — Ajuste fino final (commit 600e174)
 - WhatsApp com máscara automática ao digitar: Japão 090-6464-0042 (3-4-4) e Brasil (11 98765-4321 ou +55 11 98765-4321). No envio, o payload leva só os dígitos. Frase de ajuda abaixo do rótulo removida.
 - Campo E-mail (opcional) novo no formulário, enviado como campo próprio do payload quando preenchido.
