@@ -2,6 +2,15 @@
 
 Formato: data, commit, o que mudou. Histórico de publicações e pontos de restauração em `RELEASES.md`.
 
+## 2026-11-08 — Refinamento premium (commit 61d5c3e)
+- Divisões: quatro cards em uma única linha no desktop largo (cards de ~296 px, foto 16:9), 2×2 no intermediário, empilhado no celular. Seção inteira com 709 px em 1366×768 (antes 1.506 px).
+- Banners panorâmicos das seções com altura compacta (300 px desktop, 240/180 px nas telas menores), sem dominar a tela.
+- Flyers viraram vitrine: miniatura proporcional sem cortes, nome do serviço, botão Ampliar e CTA próprio. Clicar na arte abre lightbox com a arte ORIGINAL integral (PNGs originais do Drive no repositório, carregados só na ampliação); dentro do lightbox, o CTA abre o formulário do serviço. Escape fecha e devolve o foco.
+- Formulários: modal de 840 px no desktop com campos em duas colunas e inputs alinhados; Interesse virou selo compacto somente leitura. No celular, formulários longos ganham 2 etapas (identificação → detalhes) com indicador, voltar sem perder dados e Enter avançando de etapa; formulários simples seguem em etapa única. Payload, validações e placeholders preservados.
+- Rodapé institucional em 4 colunas (marca, divisões, contato, licença); a seção isolada da licença saiu e a licença do Rodrigo Tanaka entrou compacta no rodapé, legível e identificada como pessoal.
+- Botão "Voltar à apresentação" do modo vitrine (index) discreto: escuro translúcido com borda dourada, menor e semi-transparente até o foco/hover.
+- Testes: 39/39 aprovados em navegador real (mock de rede identificado), incluindo divisões em 1366×768/1600×900/1920×1080, lightbox, etapas mobile com payload íntegro e regressões do seguro/SUV.
+
 ## 2026-11-08 — Correção complementar (commit a8a6b07)
 - Área institucional: Rodrigo Tanaka identificado com a licença comercial japonesa （古物商許可証， 静岡県公安委員会, 第49128A000725号, 交付 令和6年3月1日), apresentada como licença pessoal do responsável, com divulgação autorizada pelo titular.
 - 10 imagens oficiais do Drive incorporadas em WebP no próprio repositório: banners das quatro divisões e flyers de Shaken, Manutenção, Seguro, Leilão/Financiamento e Traduções. Imagem, título e botão de cada serviço abrem o mesmo formulário.
