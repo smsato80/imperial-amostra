@@ -2,6 +2,11 @@
 
 Formato: data, commit, o que mudou. Histórico de publicações e pontos de restauração em `RELEASES.md`.
 
+## 2026-11-08 — Correção: botões do contato com 140px no mobile (commit b1f4458)
+- Regressão apontada pelo Minoru: em telas ≤640px, `.contato-ctas .btn` mantinha `flex: 1 1 140px` e, com o layout em coluna, a base virava altura — cada botão com ~140px.
+- Correção exclusiva: os botões voltaram a ficar em linha de largura total abaixo de endereço/horários (coluna do meio via display:contents, QR fixo ao lado), com min-height de 48px, sem quebra de texto (nowrap + fonte/padding ajustados só nesses botões).
+- Medido em navegador real: antes 140/140/140px; depois 48/48/48px em 320, 360, 390, 430 e 768px, nos três idiomas (PT/EN/JA); desktop 1440px inalterado (46px). Sem overflow nem sobreposição em QR, endereço e rodapé. Regressão geral: 45/45 + 39/39.
+
 ## 2026-11-08 — Contato e rodapé mobile em bloco (commit 475949b)
 - Pedido do Minoru a partir de captura no celular dele: no mobile/tablet (≤1020px) o QR Code saiu de baixo do contato e ficou ao lado — título, telefone e licença em largura cheia; endereço e horários à esquerda, cartão do QR à direita; botões empilhados na coluna.
 - Rodapé no mobile/tablet virou um bloco só: logo à esquerda (com nome e frase) e todos os textos à direita (Divisões e Contato empilhados), sem a coluna solta embaixo.
