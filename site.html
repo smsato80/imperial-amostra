@@ -538,12 +538,12 @@ details summary{padding:9px 0;cursor:pointer;min-height:24px}
 @media(max-width:1020px){
   .contato-grid{grid-template-columns:minmax(0,1fr) 168px;gap:22px;align-items:start}
   .contato-grid > div:first-child{grid-column:1 / -1}
-  .contato-grid .contato-meio{grid-column:1}
-  .contato-grid .qr-card{grid-column:2;padding:16px 12px}
+  .contato-grid .contato-meio{display:contents}
+  .contato-grid .qr-card{grid-column:2;grid-row:2 / span 3;padding:16px 12px;align-self:start}
   .contato-grid .qr-card img{width:132px;height:132px}
   .contato-grid .qr-card p{font-size:12px;line-height:1.5}
-  .contato-ctas{flex-direction:column;align-items:stretch}
-  .contato-ctas .btn{justify-content:center;text-align:center}
+  .contato-ctas{grid-column:1 / -1;flex-direction:row;flex-wrap:wrap}
+  .contato-ctas .btn{min-height:48px;justify-content:center;text-align:center;white-space:nowrap;font-size:14px;padding:12px 16px}
   .rodape-grid{grid-template-columns:112px minmax(0,1fr);gap:26px}
   .rodape-grid > div:first-child{grid-row:1 / span 2}
   .rodape-grid img.logo-full{width:96px;margin-bottom:12px}
