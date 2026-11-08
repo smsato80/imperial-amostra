@@ -2,6 +2,16 @@
 
 Formato: data, commit, o que mudou. Histórico de publicações e pontos de restauração em `RELEASES.md`.
 
+## 2026-11-08 — Ajuste fino final (commit 600e174)
+- WhatsApp com máscara automática ao digitar: Japão 090-6464-0042 (3-4-4) e Brasil (11 98765-4321 ou +55 11 98765-4321). No envio, o payload leva só os dígitos. Frase de ajuda abaixo do rótulo removida.
+- Campo E-mail (opcional) novo no formulário, enviado como campo próprio do payload quando preenchido.
+- Formulário sem rolagem interna: desktop em grade compacta de 3 colunas (Enviar visível em 1366×768 e 1440×900 em todos os serviços testados); celular com wizard de etapas curtas (blocos de ~3 perguntas, até 4 etapas nos formulários longos), com indicador e preservação de dados.
+- Conectividade em duas colunas no desktop: imagem inteira na proporção original de um lado, cards de Fibra/Torre/Pocket do outro; no celular empilha.
+- Traduções: flyer saiu da página e entrou no modal — clicar em um serviço abre o formulário com a arte ao lado (ampliável em lightbox sem resetar o que foi digitado).
+- Veículos: flyers dentro de painel com título "Serviços e valores".
+- Contato em 3 colunas: telefone grande + licença do Rodrigo logo abaixo (só "Rodrigo Tanaka", sem PORTO), endereço/horários e CTAs no meio, QR Code ao lado. Licença aparece uma única vez na página; rodapé voltou a 3 colunas, sem licença.
+- Drive School intocado. Testes: 45/45 aprovados em navegador real (mock de rede identificado).
+
 ## 2026-11-08 — Refinamento premium (commit 61d5c3e)
 - Divisões: quatro cards em uma única linha no desktop largo (cards de ~296 px, foto 16:9), 2×2 no intermediário, empilhado no celular. Seção inteira com 709 px em 1366×768 (antes 1.506 px).
 - Banners panorâmicos das seções com altura compacta (300 px desktop, 240/180 px nas telas menores), sem dominar a tela.
