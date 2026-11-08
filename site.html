@@ -104,7 +104,7 @@ html[lang="ja"] .hero-title{letter-spacing:0;line-break:strict;word-break:normal
 }
 @media(max-width:1023px){
   /* Extend the reflective foreground under the copy while keeping the full photo at the top. */
-  .hero-content::before{content:"";position:absolute;inset:calc(56.28vw - 72px) 0 0;pointer-events:none;background:linear-gradient(90deg,rgba(3,12,24,.8),rgba(3,12,24,.65)),url("assets/hero-imperial-sem-textos.png") center bottom/100% 440% no-repeat;mask-image:linear-gradient(transparent,#000 72px);z-index:1}
+  .hero-content::before{content:"";position:absolute;inset:calc(56.28vw - 72px) 0 0;pointer-events:none;background:linear-gradient(90deg,rgba(3,12,24,.8),rgba(3,12,24,.65)),url("assets/hero-imperial-sem-textos.png") center bottom/100% 440% no-repeat;background-image:linear-gradient(90deg,rgba(3,12,24,.8),rgba(3,12,24,.65)),image-set(url("assets/hero-imperial-sem-textos.webp") type("image/webp"),url("assets/hero-imperial-sem-textos.png") type("image/png"));mask-image:linear-gradient(transparent,#000 72px);z-index:1}
   .hero-copy,.hero-links{z-index:2}
   .hero-copy{margin-top:clamp(-35px,-7vw,-24px)}
   .hero-copy .hero-ctas{gap:8px}
@@ -372,7 +372,7 @@ html[lang="ja"] main section:not(.hero) h2{line-break:strict;word-break:auto-phr
   form.modo-etapas[data-etapa="4"] .passo-4{display:block}
   form.modo-etapas:not(.ultima-etapa) #btnContinuar{display:flex}
   form.modo-etapas:not(.ultima-etapa) #btnEnviar,form.modo-etapas:not(.ultima-etapa) .nota-form{display:none}
-  form.modo-etapas[data-etapa="2"] #btnVoltar,form.modo-etapas[data-etapa="3"] #btnVoltar{display:block}
+  form.modo-etapas[data-etapa="2"] #btnVoltar,form.modo-etapas[data-etapa="3"] #btnVoltar,form.modo-etapas[data-etapa="4"] #btnVoltar{display:block}
 }
 
 .campo input,.campo textarea,.campo select{width:100%;background:var(--preto);border:1px solid var(--linha-forte);border-radius:10px;color:var(--branco);font:inherit;font-size:16px;padding:13px 14px;transition:border-color .2s, box-shadow .2s}
@@ -573,7 +573,7 @@ details summary{padding:9px 0;cursor:pointer;min-height:24px}
 <section class="hero" id="inicio">
   <div class="hero-content">
     <div class="hero-scene">
-      <img class="hero-photo" src="assets/hero-imperial-sem-textos.png" alt="" width="1672" height="941" fetchpriority="high">
+      <picture><source type="image/webp" srcset="assets/hero-imperial-sem-textos.webp"><img class="hero-photo" src="assets/hero-imperial-sem-textos.png" alt="" width="1672" height="941" fetchpriority="high"></picture>
       <img class="hero-logo hero-logo-left" src="assets/imperial-logo-oficial-drive.jpg" alt="" width="1254" height="1254">
       <img class="hero-logo hero-logo-wall" src="assets/imperial-logo-oficial-drive.jpg" alt="" width="1254" height="1254">
     </div>
