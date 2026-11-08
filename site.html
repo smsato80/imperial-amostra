@@ -533,6 +533,29 @@ details summary{padding:9px 0;cursor:pointer;min-height:24px}
   html{scroll-behavior:auto}
   .revela{opacity:1;transform:none}
 }
+
+/* ===== Contato e rodapé mobile — QR ao lado e bloco único (08/11/2026, pedido do Minoru) ===== */
+@media(max-width:1020px){
+  .contato-grid{grid-template-columns:minmax(0,1fr) 168px;gap:22px;align-items:start}
+  .contato-grid > div:first-child{grid-column:1 / -1}
+  .contato-grid .contato-meio{grid-column:1}
+  .contato-grid .qr-card{grid-column:2;padding:16px 12px}
+  .contato-grid .qr-card img{width:132px;height:132px}
+  .contato-grid .qr-card p{font-size:12px;line-height:1.5}
+  .contato-ctas{flex-direction:column;align-items:stretch}
+  .contato-ctas .btn{justify-content:center;text-align:center}
+  .rodape-grid{grid-template-columns:112px minmax(0,1fr);gap:26px}
+  .rodape-grid > div:first-child{grid-row:1 / span 2}
+  .rodape-grid img.logo-full{width:96px;margin-bottom:12px}
+  .rodape-grid .slogan{font-size:11px;letter-spacing:.18em}
+  .rodape-grid > div:first-child p{font-size:13px}
+}
+@media(max-width:400px){
+  .contato-grid{grid-template-columns:minmax(0,1fr) 132px;gap:16px}
+  .contato-grid .qr-card img{width:106px;height:106px}
+  .rodape-grid{grid-template-columns:96px minmax(0,1fr);gap:20px}
+  .rodape-grid img.logo-full{width:84px}
+}
 </style>
 </head>
 <body>
