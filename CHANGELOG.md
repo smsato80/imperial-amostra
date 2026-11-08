@@ -2,6 +2,11 @@
 
 Formato: data, commit, o que mudou. Histórico de publicações e pontos de restauração em `RELEASES.md`.
 
+## 2026-11-08 — Contato e rodapé mobile em bloco (commit 475949b)
+- Pedido do Minoru a partir de captura no celular dele: no mobile/tablet (≤1020px) o QR Code saiu de baixo do contato e ficou ao lado — título, telefone e licença em largura cheia; endereço e horários à esquerda, cartão do QR à direita; botões empilhados na coluna.
+- Rodapé no mobile/tablet virou um bloco só: logo à esquerda (com nome e frase) e todos os textos à direita (Divisões e Contato empilhados), sem a coluna solta embaixo.
+- Desktop inalterado. Sem overflow em 320/360/390px; testes 45/45 + 39/39 mantidos.
+
 ## 2026-11-08 — Hero em WebP + Voltar na 4ª etapa (commit e6db1dd)
 - Hero otimizado com autorização expressa do Minoru: WebP q92 (286.718 bytes) gerado do PNG oficial, mesmas dimensões (1672×941), enquadramento, cores, reflexos e logomarcas; comparação visual lado a lado em 1440px e 390px e zoom na área do carro/loja sem diferença perceptível (PSNR 34,9 dB). O PNG original (2.015.055 bytes, SHA-256 b8850578…) permanece no repositório como backup e é o fallback do <picture> e do image-set da faixa de reflexo.
 - Botão Voltar corrigido: a regra de exibição cobria só as etapas 2 e 3; agora cobre também a 4ª, sem mudança de design. Verificado com cliques reais (visibilidade + retorno até a etapa 1) em fibra (4 etapas), shaken e compra (3 etapas).

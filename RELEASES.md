@@ -7,6 +7,7 @@ Regra permanente (Minoru, 08/11/2026): antes de cada publicação, criar tag de 
 
 | Data | Commit publicado | Versão anterior | Tag de restauração | Descrição |
 |---|---|---|---|---|
+| 2026-11-08 | 475949b (+ docs) | e98ffaa | imperial-backup-2026-11-08-v6 → e98ffaa | Mobile: QR ao lado do contato e rodapé em bloco único ao lado da logo. Detalhes no CHANGELOG.md. |
 | 2026-11-08 | e6db1dd (+ docs) | f54e62e | imperial-backup-2026-11-08-v5 → f54e62e | Hero em WebP q92 (PNG preservado como backup/fallback) e Voltar visível na 4ª etapa. Detalhes no CHANGELOG.md. |
 | 2026-11-08 | 8ecd3c5 (+ docs) | 35b7a8e | imperial-backup-2026-11-08-v4 → 35b7a8e | Refinamento mobile premium: validação inline, cards horizontais, barra de contato, conversão instrumentada, acessibilidade 100 no Lighthouse local. Detalhes no CHANGELOG.md. |
 | 2026-11-08 | 600e174 (+ docs) | c3b9977 | imperial-backup-2026-11-08-v3 → c3b9977 | Ajuste fino final: máscara de WhatsApp, e-mail opcional, formulário sem rolagem, conectividade/traduções reorganizadas, licença única no contato. Detalhes no CHANGELOG.md. |
